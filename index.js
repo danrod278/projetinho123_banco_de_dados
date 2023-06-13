@@ -12,14 +12,22 @@ function criarPasta(nome){
 }
 
 function criarDataBase(caminho, pasta, nome){
+    const coisa_inicial = `{"${nome}":{}
+}`
     var caminho_database = path.join(pasta, "/"+nome+".json")
     fs.writeFileSync(`${caminho_database}`, "", "utf-8", (err)=>{
+        if(err){
+            console.log(caminho_database+err)
+            return
+        }
+        
+    })
+    fs.writeFile(caminho_database, coisa_inicial, "utf-8", (err)=>{
         if(err){
             console.log(`Houve um erro ao criar o arquivo ${caminho_database}:       `+err)
             return
         }
-        console.log(`Arquivo ${caminho_database}.json criado com sucesso`)
-    })
+        console.log(`Arquivo ${caminho_database}.json criado com sucesso`)    })
 }
  
 var pasta = "teste5"
