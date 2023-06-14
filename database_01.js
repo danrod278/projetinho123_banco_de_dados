@@ -79,5 +79,7 @@ function add_info_Obj(pasta, nome_arquivo, nome_database, obj, celula_obj, info)
         console.log("Houve um erro:                  "+err)
     }
 }
-
-
+function pastaEdatabase(pasta, nome_arquivo, nome_database){
+    criarPasta(pasta)
+    criarDataBase(pasta, nome_arquivo, nome_database)
+}
