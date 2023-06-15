@@ -1,6 +1,8 @@
 const fs = require("fs")
 const path = require("path")
-function criarPasta(nome){
+
+function criarPasta(array){
+    var nome = array[0]
     fs.mkdir(path.join(__dirname, `${nome}`), (erro)=>{
         if(erro){
             console.log("Houve um erro ao criar a pasta: " + erro)
@@ -9,7 +11,11 @@ function criarPasta(nome){
         console.log("Pasta criada com sucesso!")
     })
 }
-function criarDataBase(pasta, nome_arquivo, nome_database){
+function criarDataBase(array){
+    console.log(array[2])
+    var pasta = array[0]
+    var nome_arquivo = array[1]
+    var nome_database = array[2]
     const obj_inicial = `{
         "${nome_database}":{
 
@@ -24,9 +30,12 @@ function criarDataBase(pasta, nome_arquivo, nome_database){
             console.log(`Houve um erro ao criar o arquivo ${caminho_database}:       `+err)
             return
         }
-        console.log(`Arquivo ${caminho_database}criado com sucesso`)    })
+        console.log(`Arquivo ${caminho_database} criado com sucesso`)    })
 }
-function add_obj(pasta, nome_arquivo, nome_database, objeto) {
+function add_obj(array, objeto) {
+    var pasta = array[0]
+    var nome_arquivo = array[1]
+    var nome_database = array[2]
     try {
         var caminho = `${pasta}/${nome_arquivo}.json`
         fs.readFile(caminho, 'utf-8',(err, dado)=>{
@@ -54,7 +63,10 @@ function add_obj(pasta, nome_arquivo, nome_database, objeto) {
         console.log('Erro ao ler ou manipular o arquivo:', err);
     }  
 }
-function add_info_Obj(pasta, nome_arquivo, nome_database, obj, celula_obj, info){
+function add_info_Obj(array, obj, celula_obj, info){
+    var pasta = array[0]
+    var nome_arquivo = array[1]
+    var nome_database = array[2]
     try{
         var caminho=`${pasta}/${nome_arquivo}.json`
         fs.readFile(caminho, 'utf-8', (err, dado)=>{
@@ -79,7 +91,9 @@ function add_info_Obj(pasta, nome_arquivo, nome_database, obj, celula_obj, info)
         console.log("Houve um erro:                  "+err)
     }
 }
-function pastaEdatabase(pasta, nome_arquivo, nome_database){
-    criarPasta(pasta)
-    criarDataBase(pasta, nome_arquivo, nome_database)
+function pastaEdatabase(array){
+    criarPasta(array)
+    criarDataBase(array)
 }
+const array = ['testedoarray', "empresas", "Users"]
+pastaEdatabase(array)
