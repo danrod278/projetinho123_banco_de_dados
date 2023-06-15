@@ -95,5 +95,3 @@ function pastaEdatabase(array){
     criarPasta(array)
     criarDataBase(array)
 }
-const array = ['testedoarray', "empresas", "Users"]
-pastaEdatabase(array)
